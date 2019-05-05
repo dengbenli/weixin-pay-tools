@@ -2,7 +2,10 @@
 
 namespace WeiXin;
 
-interface WeiXinInterface
+/**
+ * 基础接口
+ */
+interface BaseWeiXinInterface
 {
 	/**
 	 * 生成 sign
@@ -33,4 +36,5 @@ interface WeiXinInterface
 	 * 发送请求
 	 */
 	public function postXml ($url = NULL, $xml = NULL);
+	
 }

@@ -2,9 +2,12 @@
 
 namespace WeiXin;
 
-use WeiXin\WeiXinInterface;
+use WeiXin\BaseWeiXinInterface;
 
-class WeiXinService implements WeiXinInterface
+/**
+ * 基础服务
+ */
+class BaseWeiXinService implements BaseWeiXinInterface
 {
 	/**
 	 * 支付 app_id
@@ -30,26 +33,6 @@ class WeiXinService implements WeiXinInterface
 	 * 证书 key 路径
 	 */
 	protected $keyPath;
-
-	/**
-	 * 企业付款至零用钱接口地址
-	 */
-	protected $enterprisePayToPocketMoney = 'https://api.mch.weixin.qq.com/mmpaymkttransfers/promotion/transfers';
-
-	/**
-	 * 查询企业付款至零用钱接口地址
-	 */
-	protected $queryEnterprisePayToPocketMoney = 'https://api.mch.weixin.qq.com/mmpaymkttransfers/gettransferinfo';
-
-	/**
-	 * 企业付款至银行卡接口地址
-	 */
-	protected $enterprisePayToBank = 'https://api.mch.weixin.qq.com/mmpaysptrans/pay_bank';
-
-	/**
-	 * 查询企业付款至银行卡接口地址
-	 */
-	protected $queryEnterprisePayToBank = 'https://api.mch.weixin.qq.com/mmpaysptrans/query_bank';
 		
 	public function __construct ($appId = NULL, $mchId = NULL, $appKey = NULL, $certPath = NULL, $keyPath = NULL)
 	{
@@ -204,47 +187,5 @@ class WeiXinService implements WeiXinInterface
 	{
 
 	}
-
-	/**
-	 * 企业付款至零用钱
-	 */
-	public function enterprisePayToPocketMoney ($param = [])
-	{
-		if (empty($param))
-		{
-			return FALSE;
-		}
-		$param['mch_appid'] = $this->appId;
-    $param['mchid'] = $this->mchId;
-    $param['sign'] = $this->createSign($param);
-    $xml = $this->arrayToXml($param);
-
-    return $this->postXml($this->enterprisePayToPocketMoney, $xml);
-	}
-
-	/**
-	 * 查询企业付款至零钱
-	 */
-	public function queryEnterprisePayToPocketMoney ($param = [])
-	{
-
-	}
-
-	/**
-	 * 企业付款至银行卡
-	 */
-	public function enterprisePayToBank ($param = [])
-	{
-
-	}
-
-	/**
-	 * 查询企业付款至银行卡
-	 */
-	public function queryEnterprisePayToBank ($param = [])
-	{
-
-	}
-
 
 }

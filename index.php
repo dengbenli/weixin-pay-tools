@@ -2,4 +2,4 @@
 
 require('vendor' . DIRECTORY_SEPARATOR . 'autoload.php');
 
-use WeiXin\WeiXinService;
+use WeiXin\enterprisePaymentService;
