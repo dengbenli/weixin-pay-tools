@@ -53,7 +53,16 @@ class enterprisePaymentService extends BaseWeiXinService
 	 */
 	public function queryEnterprisePayToPocketMoney ($param = [])
 	{
+		if (empty($param))
+		{
+			return FALSE;
+		}
+		$param['mch_id'] = $this->mchId;
+		$param['appid'] = $this->appId;
+		$param['sign'] = $this->createSign($param);
+		$xml = $this->arrayToXml($xml);
 
+		return $this->postXml($this->queryEnterprisePayToPocketMoney, $xml);
 	}
 
 	/**
